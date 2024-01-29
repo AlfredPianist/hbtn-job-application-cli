@@ -32,6 +32,9 @@ $ cd hbtn-work-status-cli
 # Install dependencies
 $ pip install -r requirements.txt
 
+# Install chromium browser to use with Playwright
+$ playwright install chromium
+
 # Create a copy of .env.example and fill in the env variables
 $ cp .env.example .env
 $ vim .env # Or use your favorite text editor for that
@@ -58,7 +61,13 @@ If you wish to customize your Job Tracking System to your needs, keep in mind th
 
 If you modify these headers from the Job Tracking System, the software will error out. Mind you, they are mandatory. They can't be empty.
 
-Also, please don't modify the "Uploaded" column. This column will be used to verify if the job was already uploaded or not, given that the project currently doesn't track the already uploaded job applications. 
+Also, please don't modify the "Last_Uploaded" column. This column will be used to verify if the job was already uploaded or not, given that the project currently doesn't track the already uploaded job applications.
+
+The second sheet from the Job Tracking System are the notes for you to update your job application. It's a little bit manual, because you need to link the job application id (Hbtn_Job_ID) to said note, but it's currently working as intended. Take into account that you can't modify your notes on the Intranet, so be careful about what you write, or else, you'll need to delete the entire job application.
+
+Regarding deletions, there's a "Delete" column. If you want to delete said job application, just type "Yes" on the job application and, after running the command, it will procede to delete it from the Intranet. Keep in mind that the application will still be in your Job Tracking System for archival purposes.
+
+Don't forget to update the "Last_Updated" column each time you update your job application with changes you've made (including new notes). Otherwise, it won't update. 
 
 Lastly, to fully utilize this system, you will need to [create a Google Places API key](https://console.cloud.google.com/google/maps-apis/start) for the location, since Holberton uses that to autocomplete the job location. You have to enter your credit card to obtain the API key.
 
@@ -68,8 +77,8 @@ Google will charge you roughly USD $3.00 (assuming you'll upload maximum 200 job
 
 There are some ideas about how to expand this with future features. But this depends on community demand. Here are some examples:
 
+- Interact with the Google Places Autocomplete instead of relying on an own Places API key.
 - Mirror jobs from the Intranet to the Job Tracking System.
-- Editing and deleting jobs from within the Job Tracking System and sync them to the Intranet.
 - Upload attachments on existing jobs from the Job Tracking System.
 
 ## Credits
@@ -77,7 +86,7 @@ There are some ideas about how to expand this with future features. But this dep
 This software uses the following open source packages:
 
 - [Requests](https://docs.python-requests.org/en/latest/index.html)
-- [MechanicalSoup](https://mechanicalsoup.readthedocs.io/en/stable/)
+- [Playwright](https://playwright.dev/python/docs/intro)
 - [Pandas](https://pandas.pydata.org/)
 - [fake-useragent](https://github.com/fake-useragent/fake-useragent)
 - [openpyxl](https://openpyxl.readthedocs.io/en/stable/index.html)
