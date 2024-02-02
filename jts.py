@@ -202,6 +202,8 @@ def select_job_notes(job_tracking_system_notes, job_id):
         (job_tracking_system_notes["Hbtn_Job_ID"] == job_id)
         & (job_tracking_system_notes["Uploaded"].isnull())
     ]
+    if job_notes.empty:
+        return None
     return job_notes
 
 
